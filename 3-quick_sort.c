@@ -25,21 +25,21 @@ void swap(int *abs, int *bbs)
 int parti(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
-	int x = low - 1, y;
+	int xds = low - 1, yds;
 
-	for (y = low; y <= high; y++)
+	for (yds = low; yds <= high; yds++)
 	{
-		if (array[y] <= pivot)
+		if (array[yds] <= pivot)
 		{
-			x++;
-			if (x != y)
+			xds++;
+			if (xds != yds)
 			{
-				swap(&array[x], &array[y]);
+				swap(&array[xds], &array[yds]);
 				print_array(array, size);
 			}
 		}
 	}
-	return (x);
+	return (xds);
 }
 /**
  * lomuto_qsort - Sorting Recursively an Array
@@ -55,9 +55,9 @@ void lomuto_qsort(int *array, int low, int high, size_t size)
 
 	if (low < high)
 	{
-		ibs = partition(array, low, high, size);
-		lomuto_qsort(array, low, i - 1, size);
-		lomuto_qsort(array, i + 1, high, size);
+		ibs = parti(array, low, high, size);
+		lomuto_qsort(array, low, ibs - 1, size);
+		lomuto_qsort(array, ibs + 1, high, size);
 	}
 }
 /**
